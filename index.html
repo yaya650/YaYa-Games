@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="am">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YAYA Games - Professional Betting</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header class="navbar">
+        <div class="logo">YAYA Games</div>
+        <div class="search-box">
+            <!-- Autocomplete disabled and anti-autofill added -->
+        </div>
+        <div class="nav-buttons" id="navButtons">
+            <button onclick="openModal('loginModal')">Login</button>
+            <button onclick="openModal('registerModal')" class="btn-green">Register</button>
+        </div>
+        <div class="user-panel" id="userPanel" style="display:none;">
+            <div class="profile-container" onclick="toggleProfileMenu()">
+                <span class="profile-icon">👤</span>
+            </div>
+            <span>ሂሳብ: <strong id="userBalance">0.00</strong> ብር</span>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-container">
+        
+        <!-- Banners Slider Section -->
+        <section class="banner-slider" id="mainBannerSection">
+            <div class="slide active"><img src="banner1.jpg" alt="Banner 1" onerror="this.style.background='#333'"></div>
+            <div class="slide"><img src="banner2.jpg" alt="Banner 2" onerror="this.style.background='#333'"></div>
+            <div class="slide"><img src="banner3.jpg" alt="Banner 3" onerror="this.style.background='#333'"></div>
+            <div class="slide"><img src="banner4.jpg" alt="Banner 4" onerror="this.style.background='#333'"></div>
+        </section>
+
+        <!-- Scrolling 10 Featured Games Top Bar -->
+        <section class="scrolling-games-bar" id="mainScrollSection">
+            <h3>ተወዳጅ ጨዋታዎች</h3>
+            <div class="scroll-container" id="scrollingGames"></div>
+        </section>
+
+        <!-- Games Grid Section (80 Games, 2 per row) -->
+        <section id="gamesTab" class="tab-content active-section">
+            <h2>ሁሉም 80 ጨዋታዎች</h2>
+            <div class="games-grid" id="gamesGrid"></div>
+        </section>
+
+        <!-- Dedicated Deposit Page Section -->
+        <section id="depositTab" class="tab-content">
+            <div class="deposit-page-container">
+                <h2>ገንዘብ ማስገቢያ (Deposit Page)</h2>
+                <div class="deposit-box">
+                    <div class="telebirr-header">
+                        <img src="telebirr-logo.jpg" alt="Telebirr" class="tele-logo" onerror="this.style.background='#444'">
+                        <span>Telebirr & Agent Payment</span>
+                    </div>
+                    <p><b>Agent Name:</b> Mohamed Abdulkarim</p>
+                    <p class="sub-label">Agent Phone Number:</p>
+                    <div class="copy-section">
+                        <input type="text" id="agentPhone" value="0997791266" readonly>
+                        <button onclick="copyPhone()" class="btn-green">Copy Phone</button>
+                    </div>
+                    <input type="number" id="depositAmountInput" placeholder="የብር መጠን ያስገቡ" autocomplete="off">
+                    <button onclick="submitDepositStep1()" class="btn-green">ቀጥል (Continue)</button>
+
+                    <!-- SMS Paste Section -->
+                    <div id="smsSection" style="display:none; margin-top: 15px;">
+                        <p class="info-text">የቴሌብር SMS ማረጋገጫ ኮድ እዚህ Paste ያድርጉ:</p>
+                        <textarea id="smsInput" placeholder="የ SMS መልእክት እዚህ ይለጥፉ (Paste)..." rows="3"></textarea>
+                        <button onclick="submitSmsCode()" class="btn-green">SMS አረጋግጥ (Confirm)</button>
+                        <p class="waiting-text" id="waitingMsg" style="display:none; color: #ffc107; margin-top: 10px; font-weight: bold;">
+                            ትንሽ ይቆዩ ኤጀንቱ ክፍያውን confirm እስኪያደርገው ይጠብቁ...
+                        </p>
+                        </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Keno Tab Section -->
+        <section id="kenoTab" class="tab-content">
+            <h2>Keno ጨዋታ</h2>
+            <p>ኬኖ ጨዋታዎችን ይጫወቱ እና ዕድልዎን ይሞክሩ!</p>
+            <button onclick="openGame('Keno')" class="btn-green">Keno ጀምር</button>
+        </section>
+
+    </main>
+
+    <!-- Fixed Bottom Navigation Bar -->
+    <nav class="bottom-nav-bar">
+        <button onclick="switchTab('gamesTab')" class="active-tab" id="tabBtnGames">🎮 80 ጌሞች</button>
+        <button onclick="switchTab('depositTab')" id="tabBtnDeposit">💳 Deposit</button>
+        <button onclick="switchTab('kenoTab')" id="tabBtnKeno">🎱 Keno</button>
+        <button onclick="openSupport()" id="tabBtnSupport">📞 Support</button>
+    </nav>
+
+    <!-- Profile Menu Dropdown Modal -->
+    <div id="profileDropdown" class="dropdown-menu" style="display:none;">
+        <a href="#" onclick="openModal('passwordModal'); toggleProfileMenu();">Password Change</a>
+        <a href="#" onclick="openSupport(); toggleProfileMenu();">Support</a>
+        <a href="#" onclick="openModal('betHistoryModal'); toggleProfileMenu();">Bet History</a>
+        <a href="#" onclick="openModal('transHistoryModal'); toggleProfileMenu();">Transaction History</a>
+        <a href="#" onclick="switchTab('depositTab'); toggleProfileMenu();">Deposit</a>
+        <a href="#" onclick="openModal('promotionModal'); toggleProfileMenu();">Promotion</a>
+        <a href="#" onclick="openModal('withdrawModal'); toggleProfileMenu();">Withdraw</a>
+        <a href="#" onclick="openModal('bonusModal'); toggleProfileMenu();">Bonus</a>
+        <a href="#" onclick="openModal('gameHistoryModal'); toggleProfileMenu();">Game History</a>
+        <!-- ከሌሎች Modals (ለምሳሌ ከ passwordModal ወይም bonusModal) በታች ልክ እንደዚህ ያስቀምጡት -->
+        <a href="#" onclick="logout();" class="btn-red">Logout</a>
+    </div>
+
+    <!-- Modals -->
+     <!-- Withdraw Modal -->
+    <div id="withdrawModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('withdrawModal')">&times;</span>
+            <div class="telebirr-header" style="margin-bottom:10px;">
+                <img src="telebirr-logo.jpg" alt="Telebirr" class="tele-logo" onerror="this.style.background='#444'">
+                <h2>Withdraw (Telebirr)</h2>
+            </div>
+            <p style="font-size: 13px; color: #aaa; margin-bottom: 10px;">ኤጀንት: Mohamed Abdulkarim (0997791266)</p>
+            <input type="number" id="withdrawAmount" placeholder="የሚወጣውን የብር መጠን (Amount)" autocomplete="off">
+            <button onclick="requestWithdraw()" class="btn-red">Withdraw አድርግ</button>
+        </div>
+    </div>
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('loginModal')">&times;</span>
+            <h2>Login</h2>
+            <input type="text" id="loginPhone" placeholder="ስልክ ቁጥር" autocomplete="off">
+            <input type="password" id="loginPass" placeholder="ፓስወርድ" autocomplete="off">
+            <button onclick="loginUser()" class="btn-green">Login</button>
+        </div>
+    </div>
+
+    <div id="registerModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('registerModal')">&times;</span>
+            <h2>Register</h2>
+            <input type="text" id="regPhone" placeholder="ስልክ ቁጥር" autocomplete="off">
+            <input type="password" id="regPass" placeholder="ፓስወርድ" autocomplete="off">
+            <button onclick="registerUser()" class="btn-green">Register</button>
+        </div>
+    </div>
+
+    <div id="passwordModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('passwordModal')">&times;</span><h2>Password Change</h2><input type="password" placeholder="አሮጌ ፓስወርድ"><input type="password" placeholder="አዲስ ፓስወርድ"><button onclick="alert('ፓስወርድ ተቀይሯል'); closeModal('passwordModal')" class="btn-green">ቀይር</button></div></div>
+    <div id="betHistoryModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('betHistoryModal')">&times;</span><h2>Bet History</h2><p>ምንም የውርርድ ታሪክ የለም።</p></div></div>
+    <div id="transHistoryModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('transHistoryModal')">&times;</span><h2>Transaction History</h2><p>ምንም ግብይት የለም።</p></div></div>
+    <div id="promotionModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('promotionModal')">&times;</span><h2>Promotion</h2><p>100% ቦነስ ከ 10,000 ብር በላይ!</p></div></div>
+    <div id="bonusModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('bonusModal')">&times;</span><h2>Bonus Balance</h2><p>አሁን ያለዎት ቦነስ: 0.00 ብር</p></div></div>
+    <div id="gameHistoryModal" class="modal"><div class="modal-content"><span class="close" onclick="closeModal('gameHistoryModal')">&times;</span><h2>Game History</h2><p>ምንም የጨዋታ ታሪክ የለም።</p></div></div>
+
+    <div id="gameModal" class="modal">
+        <div class="modal-content text-center">
+            <span class="close" onclick="closeModal('gameModal')">&times;</span>
+            <h2 id="activeGameTitle">ጨዋታ</h2>
+            <p id="gameMessage" class="error-text">በቂ ሂሳብ የሎትም! (Insufficient Balance)</p>
+            <button onclick="closeModal('gameModal')" class="btn-green">እሺ</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,347 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+body {
+    background-color: #ffcc00; /* የገጹን ጀርባ ሙሉ በሙሉ ቢጫ አደረግነው */
+    color: #121212; /* የጽሁፉ ከለር ግልጽ እንዲሆን ጥቁር ተደረገ */
+    padding-bottom: 75px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #1f1f1f;
+    padding: 10px 15px;
+    border-bottom: 2px solid #ffcc00; /* Yellow Accent */
+    position: sticky;
+    top: 0;
+    z-index: 900;
+}
+
+.logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #ffcc00; /* Yellow Logo */
+}
+
+.search-box input {
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid #444;
+    background: #2a2a2a;
+    color: #fff;
+    width: 140px;
+    outline: none;
+}
+
+.nav-buttons button, .user-panel button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    font-size: 12px;
+}
+
+.user-panel {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.profile-container {
+    background: #333;
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    border: 1px solid #ffcc00; /* Yellow Border */
+}
+
+.profile-icon {
+    font-size: 18px;
+}
+
+.btn-yellow {
+    background-color: #ffcc00; /* Yellow Button */
+    color: #121212;
+    font-weight: bold;
+}
+
+.btn-yellow:hover {
+    background-color: #e6b800;
+}
+
+.btn-red {
+    background-color: #dc3545;
+    color: white;
+}
+
+.banner-slider {
+    width: 100%;
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+    background: #111;
+}
+
+.banner-slider .slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+.banner-slider .slide.active {
+    display: block;
+}
+
+.banner-slider img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    background: #000;
+}
+
+.scrolling-games-bar {
+    background: #1a1a1a;
+    padding: 8px 10px;
+}
+
+.scroll-container {
+    display: flex;
+    overflow-x: auto;
+    gap: 10px;
+    padding: 5px 0;
+}
+
+.scroll-item {
+    min-width: 70px;
+    text-align: center;
+    cursor: pointer;
+    background: #222;
+    padding: 4px;
+    border-radius: 4px;
+}
+
+.scroll-item img {
+    width: 50px;
+    height: 50px;
+    border-radius: 4px;
+    object-fit: contain;
+    background: #111;
+}
+
+.bottom-nav-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: #181818;
+    display: flex;
+    justify-content: space-around;
+    padding: 12px 0;
+    border-top: 2px solid #333;
+    z-index: 950;
+}
+
+.bottom-nav-bar button {
+    background: none;
+    border: none;
+    color: #aaa;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 13px;
+}
+
+.bottom-nav-bar button.active-tab {
+    color: #ffcc00; /* Active tab yellow */
+}
+
+.main-container {
+    padding: 15px;
+}
+
+.tab-content {
+    display: none;
+}
+
+.tab-content.active-section {
+    display: block;
+}
+
+.games-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 15px;
+}
+
+.game-card {
+    background: #1e1e1e;
+    border-radius: 8px;
+    padding: 8px;
+    text-align: center;
+    cursor: pointer;
+    border: 1px solid #333;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+.game-card img {
+    width: 100%;
+    height: 85px;
+    object-fit: contain;
+    border-radius: 4px;
+    background: #151515;
+}
+
+.game-card p {
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: bold;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.deposit-page-container {
+    max-width: 500px;
+    margin: 0 auto;
+    padding: 10px;
+}
+
+.deposit-box {
+    background: #1e1e1e;
+    padding: 20px;
+    border-radius: 10px;
+    margin-top: 15px;
+    border: 1px solid #333;
+}
+
+.telebirr-header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.tele-logo {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: contain;
+    background: #222;
+}
+
+.sub-label {
+    font-size: 13px;
+    color: #aaa;
+    margin-top: 5px;
+}
+
+.copy-section {
+    display: flex;
+    gap: 8px;
+    margin: 8px 0 15px 0;
+}
+
+.
+copy-section input {
+    flex: 1;
+    padding: 10px;
+    background: #333;
+    border: 1px solid #555;
+    color: #fff;
+    border-radius: 4px;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    background: #333;
+    border: 1px solid #555;
+    color: #fff;
+    border-radius: 4px;
+    margin: 8px 0;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.7);
+}
+
+.modal-content {
+    background-color: #222;
+    margin: 20% auto;
+    padding: 20px;
+    border: 1px solid #444;
+    width: 90%;
+    max-width: 380px;
+    border-radius: 8px;
+    position: relative;
+}
+
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 26px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: #fff;
+}
+
+.modal-content input {
+    width: 100%;
+    padding: 10px;
+    margin: 8px 0;
+    background: #333;
+    border: 1px solid #555;
+    color: white;
+    border-radius: 4px;
+}
+
+.error-text {
+    color: #ff4d4d;
+    margin: 15px 0;
+    font-weight: bold;
+}
+
+.dropdown-menu {
+    position: fixed;
+    right: 15px;
+    top: 60px;
+    background: #222;
+    border: 1px solid #444;
+    width: 240px;
+    z-index: 2500;
+    border-radius: 5px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.6);
+}
+
+.dropdown-menu a {
+    display: block;
+    padding: 10px 15px;
+    color: #ddd;
+    text-decoration: none;
+    border-bottom: 1px solid #333;
+    font-size: 13px;
+}
+
+.dropdown-menu a:hover {
+    background: #738b2b;
+}
