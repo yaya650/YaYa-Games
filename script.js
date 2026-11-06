@@ -108,7 +108,7 @@ function toggleProfileMenu() {
 function registerUser() {
     let phone = document.getElementById('regPhone').value;
     if(!phone) { alert("እባክዎ ስልክ ቁጥር ያስገቡ"); return; }
-    alert("በሰላም ተመዝግበዋል!");
+    alert("well come!");
     closeModal('registerModal');
     loginSuccess(phone);
 }
@@ -117,7 +117,7 @@ function loginUser() {
     let phone = document.
     getElementById('loginPhone').value;
     if(!phone) { alert("እባክዎ ስልክ ቁጥር ያስገቡ"); return; }
-    alert("በሰላም ገብተዋል!");
+    alert("well come back!");
     closeModal('loginModal');
     loginSuccess(phone);
 }
