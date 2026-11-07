@@ -20,7 +20,7 @@ body {
     position: sticky;
     top: 0;
     z-index: 900;
-    border-bottom: 2px solid #00ff66; /* Green Accent */
+    border-bottom: 2px solid #ffcc00; /* Yellow Accent */
     box-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
@@ -32,14 +32,14 @@ body {
 
 .menu-icon {
     font-size: 22px;
-    color: #00ff66;
+    color: #ffcc00;
     cursor: pointer;
 }
 
 .logo {
     font-size: 18px;
     font-weight: bold;
-    color: #00ff66; /* Green Logo */
+    color: #ffcc00; /* Yellow Logo */
     letter-spacing: 1px;
 }
 
@@ -50,7 +50,7 @@ body {
 }
 
 .btn-register {
-    background-color: #00ff66; /* Bright Green */
+    background-color: #ffcc00; /* Bright Yellow */
     color: #121212;
     border: none;
     padding: 6px 12px;
@@ -61,13 +61,13 @@ body {
 }
 
 .btn-register:hover {
-    background-color: #00cc52;
+    background-color: #e6b800;
 }
 
 .btn-login {
     background-color: #2a2a2a;
-    color: #00ff66;
-    border: 1px solid #00ff66;
+    color: #ffcc00;
+    border: 1px solid #ffcc00;
     padding: 6px 12px;
     border-radius: 4px;
     font-weight: bold;
@@ -92,7 +92,7 @@ body {
     align-items: center;
     justify-content: center;
     cursor: pointer;
-    border: 1px solid #00ff66;
+    border: 1px solid #ffcc00;
 }
 
 .profile-icon {
@@ -100,7 +100,7 @@ body {
 }
 
 .btn-blue {
-    background-color: #00ff66; /* Converted to Green */
+    background-color: #ffcc00; /* Converted to Yellow */
     color: #121212;
     font-weight: bold;
     border: none;
@@ -110,7 +110,7 @@ body {
 }
 
 .btn-blue:hover {
-    background-color: #00cc52;
+    background-color: #e6b800;
 }
 
 .btn-red {
@@ -154,7 +154,7 @@ body {
 }
 
 .scrolling-games-bar h3 {
-    color: #00ff66;
+    color: #ffcc00;
     font-size: 14px;
     margin-bottom: 5px;
 }
@@ -207,7 +207,7 @@ body {
 }
 
 .live-indicator {
-    color: #00ff66;
+    color: #ffcc00;
 }
 
 .sports-container {
@@ -227,7 +227,7 @@ body {
 
 .match-league {
     font-size: 12px;
-    color: #00ff66;
+    color: #ffcc00;
     margin-bottom: 8px;
     font-weight: bold;
 }
@@ -267,7 +267,7 @@ body {
 }
 
 .odd-box strong {
-    color: #00ff66; /* Green Odds */
+    color: #ffcc00; /* Yellow Odds */
 }
 
 /* Bottom Navigation Bar */
@@ -299,7 +299,7 @@ body {
 }
 
 .bottom-nav-bar button.active-tab {
-    color: #00ff66;
+    color: #ffcc00;
     font-weight: bold;
 }
 
@@ -453,5 +453,5 @@ body {
 
 .dropdown-menu a:hover {
     background: #2a2a2a;
-    color: #00ff66;
+    color: #ffcc00;
 }
