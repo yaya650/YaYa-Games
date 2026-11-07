@@ -4,17 +4,42 @@ const gameNames = [
     "Aviator", "JetX", "Chicken Road", "Roulette", "Avai Master", "Red Hot", "Lucky Crash", "Rocket", 
     "Chicken vs Zombie", "Buffalo", "Keno", "Rabbit Wild", "Fish Golden Fate", "Book of Dead", "Slots", 
     "3 Fortune", "777 Slots", "God of Olympus", "Avitor Red", 
-    ...Array.from({length: 61}, (_, i) => `YAYA Game ${i + 20}`)
+    ...Array.from({length: 61}, (_, i) => `Cini Game ${i + 20}`)
 ];
+
+const sportLeagues = [
+    "⚽ Armenia. Premier League", 
+    "🏀 Israel. Super League", 
+    "🎾 WTA 250. Chennai. Hard. India", 
+    "⚽ English Premier League", 
+    "⚽ Spanish La Liga"
+];
+
+const sportMatches = Array.from({length: 50}, (_, i) => {
+    let league = sportLeagues[i % sportLeagues.length];
+    return {
+        id: i + 1,
+        league: league,
+        team1: i % 2 === 0 ? "FC Van" : "Hapoel Holon",
+        team2: i % 2 === 0 ? "Pyunik" : "Hapoel Galil Elyon",
+        score1: Math.floor(Math.random() * 3),
+        score2: Math.floor(Math.random() * 3),
+        w1: (1.5 + Math.random() * 5).toFixed(2),
+        x: (3.0 + Math.random() * 2).toFixed(2),
+        w2: (1.2 + Math.random() * 2).toFixed(2)
+    };
+});
 
 window.onload = function() {
     loadGames();
+    loadSports();
     loadScrollingGames();
     startBannerSlider();
 };
 
 function loadGames() {
     const grid = document.getElementById('gamesGrid');
+    if(!grid) return;
     grid.innerHTML = '';
     
     gameNames.forEach((name, index) => {
@@ -30,8 +55,42 @@ function loadGames() {
     });
 }
 
+function loadSports() {
+    const grid = document.getElementById('sportsGrid');
+    if(!grid) return;
+    grid.innerHTML = '';
+    
+    sportMatches.forEach((match) => {
+        let card = document.createElement('div');
+        card.className = 'sport-match-card';
+        card.innerHTML = `
+            <div class="match-league">${match.league}</div>
+            <div class="match-teams">
+                <div style="display:flex; justify-content:space-between;"><span>${match.team1}</span> <span><b>${match.score1}</b></span></div>
+                <div style="display:flex; justify-content:space-between;"><span>${match.team2}</span> <span><b>${match.score2}</b></span></div>
+            </div>
+            <div class="match-odds-grid">
+                <div class="odd-box" onclick="openGame('${match.team1} vs ${match.team2}')">
+                    <span>W1</span>
+                    <strong>${match.w1}</strong>
+                </div>
+                <div class="odd-box" onclick="openGame('${match.team1} vs ${match.team2}')">
+                    <span>X</span>
+                    <strong>${match.x}</strong>
+                </div>
+                <div class="odd-box" onclick="openGame('${match.team1} vs ${match.team2}')">
+                    <span>W2</span>
+                    <strong>${match.w2}</strong>
+                </div>
+            </div>
+        `;
+        grid.appendChild(card);
+    });
+}
+
 function loadScrollingGames() {
     const scrollBar = document.getElementById('scrollingGames');
+    if(!scrollBar) return;
     scrollBar.innerHTML = '';
     for(let i=0; i<10; i++) {
         let item = document.createElement('div');
@@ -52,7 +111,8 @@ function startBannerSlider() {
     setInterval(() => {
         slides[currentSlide].classList.remove('active');
         currentSlide = (currentSlide + 1) % slides.length;
-        slides[currentSlide].classList.add('active');
+        slides[currentSlide].classList.
+          add('active');
     }, 3500);
 }
 
@@ -78,16 +138,22 @@ function switchTab(tabId) {
     let bannerSec = document.getElementById('mainBannerSection');
     let scrollSec = document.getElementById('mainScrollSection');
     
-    if(tabId === 'depositTab') {
-        bannerSec.style.display = 'none';
-        scrollSec.style.display = 'none';
+    if(tabId === 'depositTab' || tabId === 'liveTvTab') {
+        if(bannerSec) bannerSec.style.display = 'none';
+        if(scrollSec) scrollSec.style.display = 'none';
     } else {
-        bannerSec.style.display = 'block';
-        scrollSec.style.display = 'block';
+        if(bannerSec) bannerSec.style.display = 'block';
+        if(scrollSec) scrollSec.style.display = 'block';
+    }
+
+    if(tabId === 'liveTvTab') {
+        alert("LiveTV ገጽ በቅርብ ቀን ይጀመራል!");
+        tabId = 'sportTab';
     }
 
     document.getElementById(tabId).classList.add('active-section');
     
+    if(tabId === 'sportTab') document.getElementById('tabBtnSport').classList.add('active-tab');
     if(tabId === 'gamesTab') document.getElementById('tabBtnGames').classList.add('active-tab');
     if(tabId === 'depositTab') document.getElementById('tabBtnDeposit').classList.add('active-tab');
     if(tabId === 'kenoTab') document.getElementById('tabBtnKeno').classList.add('active-tab');
@@ -114,8 +180,7 @@ function registerUser() {
 }
 
 function loginUser() {
-    let phone = document.
-    getElementById('loginPhone').value;
+    let phone = document.getElementById('loginPhone').value;
     if(!phone) { alert("እባክዎ ስልክ ቁጥር ያስገቡ"); return; }
     alert("well come back!");
     closeModal('loginModal');
@@ -151,8 +216,6 @@ function submitDepositStep1() {
     if(!amt) { alert("እባክዎ የብር መጠን ያስገቡ"); return; }
     document.getElementById('smsSection').style.display = 'block';
 }
-// ከዚህ በፊት የነበሩት ፌንክሽኖች (ለምሳሌ submitSmsCode) ካሉ ከነሱ በታች ወይም በመጨረሻው መስመር ላይ ይህንን ያስገቡ፡
-
 
 function submitSmsCode() {
     let sms = document.getElementById('smsInput').value;
@@ -160,24 +223,6 @@ function submitSmsCode() {
     document.getElementById('waitingMsg').style.display = 'block';
 }
 
-// Withdraw functionality with Telebirr, Amount, and Insufficient Balance check
-// ከዚህ በፊት የነበሩት ፌንክሽኖች (ለምሳሌ submitSmsCode) ካሉ ከነሱ በታች ወይም በመጨረሻው መስመር ላይ ይህንን ያስገቡ፡
-
-function requestWithdraw() {
-    let amt = parseFloat(document.getElementById('withdrawAmount').value) || 0;
-    
-    // በቂ ባላንስ ከሌለ (ከ userBalance በላይ ከሆነ)
-    if(amt > userBalance || userBalance <= 0) {
-        alert("በቂ ሂሳብ የሎትም!");
-        return;
-    }
-
-    // በቂ ባላንስ ካለ ከሂሳብ ቀንሶ Withdraw እንዲያደርግ
-    userBalance -= amt;
-    updateBalanceDisplay();
-    alert("የ Withdraw ጥያቄዎ በ Telebirr በኩል ተልኳል (ኤጀንት: 0997791266)");
-    closeModal('withdrawModal');
-}
 function requestWithdraw() {
     let amt = parseFloat(document.getElementById('withdrawAmount').value) || 0;
     
