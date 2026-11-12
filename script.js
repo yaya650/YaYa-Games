@@ -207,8 +207,8 @@ function updateBalanceDisplay() {
 }
 
 function copyPhone() {
-    navigator.clipboard.writeText("0997791266");
-    alert("ስልክ ቁጥር ተገልብጧል (Copied): 0997791266");
+    navigator.clipboard.writeText("0990791985");
+    alert("ስልክ ቁጥር ተገልብጧል (Copied): 0990791985");
 }
 
 function submitDepositStep1() {
@@ -238,10 +238,10 @@ function requestWithdraw() {
 
     userBalance -= amt;
     updateBalanceDisplay();
-    alert("የ Withdraw ጥያቄዎ በ Telebirr በኩል ተልኳል (ኤጀንት: 0997791266)");
+    alert("የ Withdraw ጥያቄዎ በ Telebirr በኩል ተልኳል (ኤጀንት: 0990791985)");
     closeModal('withdrawModal');
 }
 
 function openSupport() {
-    window.open("https://t.me/0997791266", "_blank");
+    window.open("https://t.me/0990791985", "_blank");
 }
