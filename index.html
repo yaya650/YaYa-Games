@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="am">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,7 +12,7 @@
     <header class="navbar">
         <div class="nav-left">
             <span class="menu-icon" onclick="toggleProfileMenu()">☰</span>
-            <div class="logo">yaya GAMES</div>
+            <div class="logo">yaya Games</div>
         </div>
         
         <div class="nav-auth-buttons" id="navButtons">
@@ -24,7 +24,7 @@
             <div class="profile-container" onclick="toggleProfileMenu()">
                 <span class="profile-icon">👤</span>
             </div>
-            <span>ሂሳብ: <strong id="userBalance">0.00</strong> ብር</span>
+            <span>Balance: <strong id="userBalance">0.00</strong> ETB</span>
         </div>
     </header>
 
@@ -33,28 +33,42 @@
         
         <!-- Banners Slider Section -->
         <section class="banner-slider" id="mainBannerSection">
-            <div class="slide active"><img src="banner1.jpg" alt="Banner 1" onerror="this.style.background='#003366'"></div>
-            <div class="slide"><img src="banner2.jpg" alt="Banner 2" onerror="this.style.background='#003366'"></div>
-            <div class="slide"><img src="banner3.jpg" alt="Banner 3" onerror="this.style.background='#003366'"></div>
-            <div class="slide"><img src="banner4.jpg" alt="Banner 4" onerror="this.style.background='#003366'"></div>
+            <div class="slide active"><img src="banner1.jpg" alt="Banner 1" onerror="this.style.background='#111'"></div>
+            <div class="slide"><img src="banner2.jpg" alt="Banner 2" onerror="this.style.background='#111'"></div>
+            <div class="slide"><img src="banner3.jpg" alt="Banner 3" onerror="this.style.background='#111'"></div>
+            <div class="slide"><img src="banner4.jpg" alt="Banner 4" onerror="this.style.background='#111'"></div>
         </section>
 
-        <!-- Scrolling 10 Featured Games Top Bar -->
+        <!-- Quick Icons Bar (Lucky... & Coupon) -->
+        <section class="quick-icons-bar">
+            <div class="quick-item" onclick="openGame('Lucky Spin')">
+                <div class="quick-icon-circle">🎡</div>
+                <span>Lucky Spin</span>
+            </div>
+            <div class="quick-item" onclick="openModal('couponModal')">
+                <div class="quick-icon-circle">🎁</div>
+                <span>Coupon</span>
+            </div>
+        </section>
+
+        <!-- Recent Big Wins Section (Horizontal Scrolling 10 Featured Games) -->
         <section class="scrolling-games-bar" id="mainScrollSection">
-            <h3>ተወዳጅ ጨዋታዎች</h3>
+            <h3>🔥 RECENT BIG WINS</h3>
             <div class="scroll-container" id="scrollingGames"></div>
         </section>
 
-        <!-- Games Grid Section (80 Games) -->
+        <!-- Search Bar -->
+        <div class="search-box-inline" id="searchSection">
+            <input type="search" id="gameSearch" placeholder="Find a Game..." autocomplete="off" onkeyup="filterGames()">
+        </div>
+
+        <!-- Games Grid Section (200 Games, 3 columns) -->
         <section id="gamesTab" class="tab-content">
-            <h2>games</h2>
-            <div class="search-box-inline">
-                <input type="search" id="gameSearch" placeholder="ጨዋታዎችን ይፈልጉ..." autocomplete="off" onkeyup="filterGames()">
-            </div>
+            <h2>All 200 Games</h2>
             <div class="games-grid" id="gamesGrid"></div>
         </section>
 
-        <!-- Sport Section ( Matches - Aligned with Provided Photo) -->
+        <!-- Sport Section (50 Matches) -->
         <section id="sportTab" class="tab-content active-section">
             <div class="sport-sub-header">
                 <span class="live-indicator">🟢 1st half 46:24</span>
@@ -66,10 +80,10 @@
         <!-- Dedicated Deposit Page Section -->
         <section id="depositTab" class="tab-content">
             <div class="deposit-page-container">
-                <h2>ገንዘብ ማስገቢያ (Deposit Page)</h2>
+                <h2>Deposit Page</h2>
                 <div class="deposit-box">
                     <div class="telebirr-header">
-                        <img src="telebirr-logo.jpg" alt="Telebirr" class="tele-logo" onerror="this.style.background='#003366'">
+                        <img src="telebirr-logo.jpg" alt="Telebirr" class="tele-logo" onerror="this.style.background='#222'">
                         <span>Telebirr & Agent Payment</span>
                     </div>
                     <p><b>Agent Name:</b> Mohamed Abdulkarim</p>
@@ -78,38 +92,51 @@
                         <input type="text" id="agentPhone" value="0997791266" readonly>
                         <button onclick="copyPhone()" class="btn-blue">Copy Phone</button>
                     </div>
-                    <input type="number" id="depositAmountInput" placeholder="የብር መጠን ያስገቡ" autocomplete="off">
-                    <button onclick="submitDepositStep1()" class="btn-blue">ቀጥል (Continue)</button>
+                    <input type="number" id="depositAmountInput" placeholder="Enter amount in ETB" autocomplete="off">
+                    <button onclick="submitDepositStep1()" class="btn-blue">Continue</button>
 
                     <!-- SMS Paste Section -->
                     <div id="smsSection" style="display:none; margin-top: 15px;">
-<p class="info-text">የቴሌብር SMS ማረጋገጫ ኮድ እዚህ Paste ያድርጉ:</p>
-                        <textarea id="smsInput" placeholder="የ SMS መልእክት እዚህ ይለጥፉ (Paste)..." rows="3"></textarea>
-                        <button onclick="submitSmsCode()" class="btn-blue">SMS አረጋግጥ (Confirm)</button>
-                        <p class="waiting-text" id="waitingMsg" style="display:none; color: #004080; margin-top: 10px; font-weight: bold;">
-                            ትንሽ ይቆዩ ኤጀንቱ ክፍያውን confirm እስኪያደርገው ይጠብቁ...
+                        <p class="info-text">Paste your Telebirr SMS confirmation code here:</p>
+                        <textarea id="smsInput" placeholder="Paste SMS message here..." rows="3"></textarea>
+                        <button onclick="submitSmsCode()" class="btn-blue">Confirm SMS</button>
+                        <p class="waiting-text" id="waitingMsg" style="display:none; color: #ffcc00; margin-top: 10px; font-weight: bold;">
+                            Please wait while the agent confirms your payment...
                         </p>
                     </div>
                 </div>
             </div>
         </section>
 
+        <!-- Promotion Tab Section -->
+        <section id="promotionTab" class="tab-content">
+            <div class="promotion-page-container">
+                <h2>Promotions & Banners</h2>
+                <div class="promo-banners-stack">
+                    <img src="banner1.jpg" alt="Banner 1" onerror="this.style.background='#222'">
+                    <img src="banner2.jpg" alt="Banner 2" onerror="this.style.background='#222'">
+                    <img src="banner3.jpg" alt="Banner 3" onerror="this.style.background='#222'">
+                    <img src="banner4.jpg" alt="Banner 4" onerror="this.style.background='#222'">
+                </div>
+            </div>
+        </section>
+
         <!-- Keno Tab Section -->
         <section id="kenoTab" class="tab-content">
-            <h2>Keno ጨዋታ</h2>
-            <p>ኬኖ ጨዋታዎችን ይጫወቱ እና ዕድልዎን ይሞክሩ!</p>
-            <button onclick="openGame('Keno')" class="btn-blue">Keno ጀምር</button>
+            <h2>Keno Game</h2>
+            <p>Play Keno games and test your luck!</p>
+            <button onclick="openGame('Keno')" class="btn-blue">Start Keno</button>
         </section>
 
     </main>
 
-    <!-- Fixed Bottom Navigation Bar (Matched with Photo layout) -->
+    <!-- Fixed Bottom Navigation Bar -->
     <nav class="bottom-nav-bar">
         <button onclick="switchTab('sportTab')" class="active-tab" id="tabBtnSport">⚽ Sports</button>
         <button onclick="switchTab('gamesTab')" id="tabBtnGames">🎮 Games</button>
+        <button onclick="switchTab('promotionTab')" id="tabBtnPromotion">🎁 Promotion</button>
         <button onclick="switchTab('depositTab')" id="tabBtnDeposit">💳 Deposit</button>
         <button onclick="switchTab('kenoTab')" id="tabBtnKeno">🎱 Keno</button>
-        <button onclick="switchTab('liveTvTab')" id="tabBtnLiveTv">📺 LiveTV</button>
     </nav>
 
     <!-- Profile Menu Dropdown Modal -->
@@ -129,22 +156,78 @@
 
     <!-- Modals -->
     <div id="loginModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content auth-modal-content">
             <span class="close" onclick="closeModal('loginModal')">&times;</span>
-            <h2>Login Page</h2>
-            <input type="text" id="loginPhone" placeholder="ስልክ ቁጥር" autocomplete="off">
-            <input type="password" id="loginPass" placeholder="ፓስወርድ" autocomplete="off">
-            <button onclick="loginUser()" class="btn-blue">Login</button>
+            <h2 class="auth-title">LOGIN</h2>
+            <div class="brand-logo-box">yaya Games</div>
+            
+            <div class="input-group">
+                <label>Mobile Number *</label>
+                <div class="phone-input-wrapper">
+                    <span class="flag-code">🇪🇹 +251</span>
+                    <input type="text" id="loginPhone" placeholder="Mobile Number" autocomplete="off">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Password *</label>
+                <input type="password" id="loginPass" placeholder="Enter your Password" autocomplete="off">
+            </div>
+
+            <button onclick="loginUser()" class="btn-auth-submit">Login</button>
+            
+            <div class="auth-footer-links">
+                <a href="#" onclick="closeModal('loginModal'); openModal('passwordModal');">Forgot your password?</a>
+                <p>Don't have an account yet? <span class="auth-switch-link" onclick="closeModal('loginModal'); openModal('registerModal');">Register</span></p>
+            </div>
         </div>
     </div>
 
     <div id="registerModal" class="modal">
-        <div class="modal-content">
+        <div class="modal-content auth-modal-content">
             <span class="close" onclick="closeModal('registerModal')">&times;</span>
-            <h2>Register Page</h2>
-            <input type="text" id="regPhone" placeholder="ስልክ ቁጥር" autocomplete="off">
-            <input type="password" id="regPass" placeholder="ፓስወርድ" autocomplete="off">
-            <button onclick="registerUser()" class="btn-blue">Register</button>
+            <h2 class="auth-title">REGISTRATION</h2>
+            <div class="brand-logo-box">yaya games</div>
+
+            <div class="input-group">
+                <label>First Name</label>
+                <input type="text" id="regFirstName" placeholder="Enter your First Name" autocomplete="off">
+            </div>
+
+            <div class="input-group">
+                <label>Mobile Number *</label>
+                <div class="phone-input-wrapper">
+                    <span class="flag-code">🇪🇹 +251</span>
+                    <input type="text" id="regPhone" placeholder="Enter your Mobile Number" autocomplete="off">
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>Password *</label>
+                <input type="password" id="regPass" placeholder="Enter your Password" autocomplete="off">
+            </div>
+
+            <div class="input-group">
+                <label>Confirm Password *</label>
+                <input type="password" id="regConfirmPass" placeholder="Confirm your Password" autocomplete="off">
+            </div>
+
+            <button onclick="registerUser()" class="btn-auth-submit">Register</button>
+            
+            <div class="auth-footer-links">
+                <p>Already have an account? <span class="auth-switch-link" onclick="closeModal('registerModal'); openModal('loginModal');">Login</span></p>
+            </div>
+        </div>
+    </div>
+
+    <!-- Coupon Modal -->
+    <div id="couponModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal('couponModal')">&times;</span>
+            <h2>Enter Coupon Code</h2>
+            <input type="text" id="couponInput" placeholder="Enter coupon code..." autocomplete="off" style="margin: 10px 0;">
+            <button onclick="submitCoupon()" class="btn-blue">Verify Code</button>
+            <p id="couponMsg" style="margin-top:10px; font-weight:bold;"></p>
         </div>
     </div>
 
@@ -152,19 +235,19 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('withdrawModal')">&times;</span>
             <h2>Withdraw Page (Telebirr)</h2>
-            <p style="font-size: 13px; color: #666; margin-bottom: 10px;">ኤጀንት: Mohamed Abdulkarim (0997791266)</p>
-            <input type="number" id="withdrawAmount" placeholder="የሚወጣውን የብር መጠን" autocomplete="off">
-            <button onclick="requestWithdraw()" class="btn-red">Withdraw አድርግ</button>
+            <p style="font-size: 13px; color: #666; margin-bottom: 10px;">Agent: Mohamed Abdulkarim (0997791266)</p>
+            <input type="number" id="withdrawAmount" placeholder="Enter withdrawal amount" autocomplete="off">
+            <button onclick="requestWithdraw()" class="btn-red">Withdraw</button>
         </div>
-</div>
+    </div>
 
     <div id="passwordModal" class="modal">
         <div class="modal-content">
             <span class="close" onclick="closeModal('passwordModal')">&times;</span>
             <h2>Password Change Page</h2>
-            <input type="password" placeholder="አሮጌ ፓስወርድ" autocomplete="off">
-            <input type="password" placeholder="አዲስ ፓስወርድ" autocomplete="off">
-            <button onclick="alert('ፓስወርድ ተቀይሯል'); closeModal('passwordModal')" class="btn-blue">ቀይር</button>
+            <input type="password" placeholder="Old Password" autocomplete="off" style="margin-bottom:8px;">
+            <input type="password" placeholder="New Password" autocomplete="off" style="margin-bottom:8px;">
+            <button onclick="alert('Password changed successfully'); closeModal('passwordModal')" class="btn-blue">Change</button>
         </div>
     </div>
 
@@ -172,7 +255,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('betHistoryModal')">&times;</span>
             <h2>Bet History Page</h2>
-            <p>ምንም የውርርድ ታሪክ የለም።</p>
+            <p>No betting history available.</p>
         </div>
     </div>
 
@@ -180,7 +263,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('transHistoryModal')">&times;</span>
             <h2>Transaction History Page</h2>
-            <p>ምንም ግብይት የለም።</p>
+            <p>No transactions available.</p>
         </div>
     </div>
 
@@ -188,8 +271,8 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('promotionModal')">&times;</span>
             <h2>Promotion Page</h2>
-            <div style="margin: 10px 0;"><img src="banner1.jpg" alt="Banner" style="width:100%; border-radius:6px;" onerror="this.style.background='#003366'"></div>
-            <p>100% ቦነስ ከ 10,000 ብር በላይ!</p>
+            <div style="margin: 10px 0;"><img src="banner1.jpg" alt="Banner" style="width:100%; border-radius:6px;" onerror="this.style.background='#222'"></div>
+            <p>100% Bonus over 10,000 ETB!</p>
         </div>
     </div>
 
@@ -197,8 +280,8 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('bonusModal')">&times;</span>
             <h2>Bonus Page</h2>
-            <div style="margin: 10px 0;"><img src="banner1.jpg" alt="Banner" style="width:100%; border-radius:6px;" onerror="this.style.background='#003366'"></div>
-            <p>አሁን ያለዎት ቦነስ: 0.00 ብር</p>
+            <div style="margin: 10px 0;"><img src="banner1.jpg" alt="Banner" style="width:100%; border-radius:6px;" onerror="this.style.background='#222'"></div>
+            <p>Current Bonus: 0.00 ETB</p>
         </div>
     </div>
 
@@ -206,7 +289,7 @@
         <div class="modal-content">
             <span class="close" onclick="closeModal('gameHistoryModal')">&times;</span>
             <h2>Game History Page</h2>
-            <p>ምንም የጨዋታ ታሪክ የለም።</p>
+            <p>No game history available.</p>
         </div>
     </div>
 
@@ -214,43 +297,21 @@
         <div class="modal-content text-center">
             <span class="close" onclick="closeModal('shareModal')">&times;</span>
             <h2>Share Page</h2>
-            <p>ይህንን ሊንክ ለወዳጅ ዘመድዎ ያጋሩ:</p>
-            <input type="text" value="https://t.me/yayaGamesBot" readonly style="text-align:center;">
-            <button onclick="alert('ሊንኩ ተገልብጧል!')" class="btn-blue" style="margin-top:10px;">Link Copy አድርግ</button>
+            <p>Share this link with your friends:</p>
+            <input type="text" value="https://t.me/SinqeBetBot" readonly style="text-align:center; margin:10px 0;">
+            <button onclick="alert('Link copied!')" class="btn-blue">Copy Link</button>
         </div>
     </div>
 
     <div id="gameModal" class="modal">
         <div class="modal-content text-center">
             <span class="close" onclick="closeModal('gameModal')">&times;</span>
-            <h2 id="activeGameTitle">ጨዋታ</h2>
-            <p id="gameMessage" class="error-text">በቂ ሂሳብ የሎትም! (Insufficient Balance)</p>
-            <button onclick="closeModal('gameModal')" class="btn-blue">እሺ</button>
+            <h2 id="activeGameTitle">Game</h2>
+            <p id="gameMessage" class="error-text" style="margin:15px 0; color:red;">Insufficient Balance!</p>
+            <button onclick="closeModal('gameModal')" class="btn-blue">OK</button>
         </div>
     </div>
 
     <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                        
